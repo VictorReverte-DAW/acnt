@@ -38,17 +38,20 @@ class CuotaController extends Controller
         $id = $_POST['id'];
         $total = $_POST['total']; 
         $fecha = date("Y/m/d", strtotime($_POST['fecha']));
+        $fechaPago = date("Y/m/d", strtotime($_POST['fechaPago']));
         if(is_null($usuario)){
             $cuota = new Cuota();
-            $cuota->fecha_pago=$fecha;
+            $cuota->mes_pagados=$fecha;
+            $cuota->fecha_pago=$fechaPago;
             $cuota->total= $total;
             $cuota->id_Usuario=$id;
             $cuota->save();
         }else{
             $cuota = Cuota::find($id);
-            $cuota->fecha_pago = $fecha;
-            $cuota->total += $total;
-            $cuota->id_Usuario = $id;
+            $cuota->mes_pagados=$fecha;
+            $cuota->fecha_pago=$fechaPago;
+            $cuota->total= $total;
+            $cuota->id_Usuario=$id;
             $cuota->save();
         }
         

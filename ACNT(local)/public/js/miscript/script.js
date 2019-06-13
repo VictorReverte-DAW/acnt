@@ -65,8 +65,7 @@ function actualizarFechaCuota(){
                     (mes<10 ? '0' : '') + mes + '-' +
                     fecha.getFullYear();
         if(((test.match(RegExPattern)))){
-            td.find( ".fechaSiguientePago" ).text(result)
-        }
+            td.find( ".fechaSiguientePago" ).text(result)        }
         })
 }
 

@@ -79,7 +79,6 @@ function obtenerFecha(){
     </div>
   </div>
 </div>
-<a href="chat.blade.php">Chat</a>
 @if(!$reuniones->isEmpty())
 <table class="table table-hover">
     {{csrf_field()}}

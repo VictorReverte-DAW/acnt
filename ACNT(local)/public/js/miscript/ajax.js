@@ -363,16 +363,19 @@ function pago(id){
         var td = $('tbody tr').eq(tr);
         var fechaSiguientePago =td.find('.fechaSiguientePago').text()
         var total =parseInt(td.find('.mes input').val())
+        var fechaPago = td.find('.efectua').text()
+        var mesesPagados= td.find('.fechaPago').text()
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 type: "post",
                 url: "/crearCuota/",
-                data:{total:total,fecha:fechaSiguientePago,id:id},
+                data:{fechaPago:fechaPago,total:total,fecha:fechaSiguientePago,id:id},
                 success: function(response){
                     alert("pago efectuado")
-                    td.find('.fechaPago').text(fechaSiguientePago)
+                    location.reload();
+                 
                 },
                 error: function(error){
                     console.log(error);

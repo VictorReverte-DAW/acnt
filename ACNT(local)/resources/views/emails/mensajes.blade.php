@@ -22,4 +22,13 @@ function obtenerFecha(){
 
 @section('content')
 
+<form action="">
+    <label for="">Usuario</label>
+    <input type="text" name="" id="">
+    <label for="">Email</label>
+    <input type="email" name="" id="">
+    <label for="">Descripcion</label>
+    <input type="text" name="" id="">
+</form>
+
 @endsection
