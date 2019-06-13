@@ -1,0 +1,172 @@
+/*1-Body*/
+body{
+    background-color: #83729C;
+   color: #636b6f;
+   font-family: 'Nunito', sans-serif;
+   font-weight: 200;
+   height: 100vh;
+   margin: 0;
+   /*background-image: url(../img/copia.jpg);*/
+}
+/*Register y login*/
+
+.session{
+    background-image: url(../img/copia.jpg);
+    background-size: cover;
+}
+#session_table{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+}
+input{
+    opacity: .5;
+}
+input:focus{
+    opacity: 1;
+}
+/*
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1; 
+  padding-top: 100px;
+  left: 0;
+  top: 50px;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: #ccc;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px !important;
+  text-align: center;
+  font-size: 20px !important;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 42px !important;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+*/
+.btn-custom{
+    background-color: lightgray;
+    color: darkslateblue;
+}
+.input-group-text{
+    display: initial;
+    text-align: center!important;
+}
+/*2-estilo*/
+.punto{
+    font-size:1.5em;
+    text-indent: 1em;
+}
+.Eliminar{
+    margin-left: 1%;
+}
+.asistentes{
+list-style: none;
+}
+.imagenes{
+    width: 80%;
+}
+.confirmacion{
+    width: 132px;
+}
+.confirmacion img{
+    max-width: 30%;
+    min-width: 30%;
+}
+/*2-Nav*/
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.navbar-light .navbar-nav .nav-link,.navbar-light .navbar-brand, .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover{
+    color: white;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: white;
+}
+.m-b-md {
+    margin-bottom: 30px;
+}
+.title{
+    color: black;
+    font-size: 84px;
+    font-weight: 900;
+}
+#navbarDropdown{
+    color: white;
+}
+.nav-item{
+    color: white;
+}
+.navbar{
+    background-color: black;
+    box-shadow: none;
+}
+/*3-Registro de miembros*/
+.checkRol{
+    display: none;
+}
+.oculto{
+    display: none;
+}
+/*4- card*/
+.card-juegos{
+    max-width: 317px;
+    max-height: 392px;
+}
+/*5.- Juegos*/
+
+.juego{
+    width: 100%;
+}
