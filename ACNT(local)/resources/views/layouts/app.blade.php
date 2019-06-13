@@ -34,15 +34,19 @@ use Illuminate\Support\Facades\DB;
         actualizarJuego();
         actualizarTorneo();
         actualizarReunion();
+        crearTareas();
+        asignarTarea()
     });
+   $(document).click(function(){
+    añadirTareas()
+   })
     function generarPDF(){
     var doc = new jsPDF()
       doc.fromHTML($('#acta').get(0),20,20,{
           'width':155},
-     
           );
       
-      doc.save('Test.pdf')
+      doc.save('acta de la reunion.pdf')
   }
     </script>
 

@@ -408,3 +408,29 @@ function escribirComentario(id){
    
     })
 }
+
+function guardarTarea(){
+    $('.tareasTable tr').each(function(index){
+        var id_usuario=$(this).find('.id').text();
+        var texto = $(this).find('.texto').val()
+        var id_Torneo =  $(this).find($('.id_torneo')).text()
+
+       $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: "post",
+        url: "/repartirTareas/",
+        data:{id_torneo:id_Torneo, id_usuario:id_usuario,texto:texto},
+        success: function(response){
+            alert("Tareas asignadas")
+        },
+        error: function(error){
+            console.log(error);
+            alert("No se ha podido añadir la tarea")
+        }
+    })
+    })
+    
+   
+}

@@ -41,6 +41,7 @@ $id_torneo = DB::select('Select id from torneos');
     ?>
 <div class="card card-juegos" style="width: 18rem;">
         <img src="img/imagenesTorneos/{{$torneo->imagen}}" alt="{{$torneo->nombre}}" class="juego">
+  
     <ul class="list-group list-group-flush torneo{{$torneo->id}}">
     <div class="id" style="display:none">{{$torneo->id}}</div>
     <li  class="list-group-item">
@@ -70,14 +71,21 @@ $id_torneo = DB::select('Select id from torneos');
         <p><button class="btn btn-primary EnviarComentario" onclick=escribirComentario({{$torneo->id}})>Enviar</button></p>
     </li>
     @endif
+    @if(Auth::user()->esMiembro===1)
     <li class="list-group-item">
+    <form action="tareas" method="post">
+    @csrf
+        <input type="hidden" name="id_torneo" value="{{$torneo->id}}">
+       <button type="submit"  class="btn btn-primary"><a href="{{url('/tareas')}}"></a>Tareas</button> 
+    </form>
+  
         <a href="{{url('borrarTorneo/')}}/{{$torneo->id}}" class="btn btn-primary">Borrar</a>
         <a href='#' data-toggle="modal" data-target="#EditTorneo" class="btn btn-primary EditTorneo">Editar</a>
         @if($torneo->estado=="activo")
         <a href="{{url('terminarTorneo/')}}/{{$torneo->id}}" class="btn btn-primary">Terminar</a>
-        @endif
+    @endif
     </li>
-   
+   @endif
     @if($totalParticipantes[$key]->total>=$torneo->max_jugadores)
     <label>Numero maximo ocupado</label>
     @else

@@ -69,3 +69,35 @@ function actualizarFechaCuota(){
         }
         })
 }
+
+function añadirTareas(){
+        var numTareas = $('#numTareas').val();
+        var numTotal =  $('.tareas li').toArray().length
+        var totalAñadido =numTareas-numTotal;
+            if(numTareas>numTotal){
+                for (let i = 0; i < totalAñadido; i++) {
+                    $('.tareas').append('<li contenteditable="true">Añadir tarea al torneo</li>')
+                }
+            }else if(numTareas<numTotal || numTotal>1){
+                for (let i = numTotal; i> numTareas; i--) {
+                    $('.tareas li:last-child').remove();
+                }
+            }
+        crearTareas()
+  
+}
+function crearTareas(){
+    $('.asignada').empty();
+    $('.tareas li').each(function(index){
+        $('.asignada').append("<option>"+$('.tareas li').eq(index).text()+"</option>")
+    });
+}
+function asignarTarea(){
+    $('tbody tr').click(function(){
+        var tr=$(this).index();
+        td = $('tbody tr').eq(tr);
+        var nombre = td.find('.nombre').text()
+        td.find($('textarea')).val($('.asignada'+nombre).val())
+    })
+    
+}

@@ -1,5 +1,4 @@
 <?php
-session_start();
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Asistente;
@@ -22,9 +21,6 @@ function obtenerFecha(){
     
     return $fecha;
     }
-if(isset($_SESSION['usuarios'])){
-    session_destroy();
-}
 ?>
 @extends('layouts.app')
 @section('content')

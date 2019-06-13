@@ -23,6 +23,13 @@ Route::get('/acta', function () {
 Route::get('/contabilidad', function () {
     return view('miembros.contabilidad');
 });
+
+
+/*
+Route::get('/tareas/{id}', function () {
+    return view('miembros.tarea')->with('id_torneo','id_torneo');
+});
+*/
 Auth::routes();
 
 Auth::routes();
@@ -59,8 +66,12 @@ Route::post('añadirComentario','ParticipantesController@store')->name('añadirC
 /*Cuotas*/
 Route::post('crearCuota/', 'CuotaController@store')->name('crearCuota');
 
+/*Supervisores*/
+
+Route::post('tareas','SupervisorController@index')->name('tareas');
+Route::post('repartirTareas','SupervisorController@store')->name('repartirTareas');
+
 /*Emails*/
 Route::resource('mail','MailController'); 
 
 Route::put("/actualizar/{id}","ajaxCrudController@update");
-

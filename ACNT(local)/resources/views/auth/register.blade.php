@@ -134,6 +134,11 @@ use Illuminate\Support\Facades\DB;
                 <div class="col-md-6">
                     <input id="dni" type="text" class="form-control{{ $errors->has('dni') ? ' is-invalid' : '' }}"
                         name="dni" value="{{ old('dni') }}" required autofocus>
+                        @if ($errors->has('dni'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('dni') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
             <div class="form-group row justify-content-center">
@@ -223,34 +228,34 @@ use Illuminate\Support\Facades\DB;
             <div class="form-group row justify-content-center">
                 <label for="Provincia" class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Provincia') }}</label>
                 <div class="col-md-6">
-                    <input id="provincia" type="text" class="form-control" name="provincia" required>
+                    <input id="provincia" type="text" class="form-control" name="provincia" required value="{{ old('provincia') }}">
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Localidad" class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Localidad') }}</label>
                 <div class="col-md-6">
-                    <input id="localidad" type="text" class="form-control" name="localidad" required>
+                    <input id="localidad" type="text" class="form-control" name="localidad" required value="{{ old('localidad') }}">
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Codigo Postal"
                     class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Codigo Postal') }}</label>
                 <div class="col-md-6">
-                    <input id="cp" type="number" class="form-control" name="cp" required>
+                    <input id="cp" type="number" class="form-control" name="cp" required value="{{ old('cp') }}">
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Telefono" class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Telefono') }}</label>
                 <div class="col-md-6">
                     <input id="telefono" type="number" class="form-control" name="telefono" minlength=9 maxlength=9
-                        required>
+                        required value="{{ old('telefono') }}">
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Fecha Nacimiento"
                     class="col-md-1 col-form-label text-md-right input-group-text">Fecha<br> Nacimiento</label>
                 <div class="col-md-6">
-                    <input id="fnac" type="date" class="form-control" name="fnac" required>
+                    <input id="fnac" type="date" class="form-control" name="fnac" required value="{{ old('fnac') }}">
                 </div>
             </div>
 
