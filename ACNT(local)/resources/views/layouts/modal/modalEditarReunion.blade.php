@@ -15,7 +15,7 @@
                     <label for="Fecha"
                             class="col-md-4 col-form-label text-md-right">Fecha</label>
                         <div class="col-md-6">
-                            <input type="date" name="EditarFecha" id="EditarFecha" min={{obtenerFecha()}} required>
+                            <input type="date" name="EditarFecha" id="EditarFecha" min="" required>
                         </div>
                     </div>
                     <div class="form-group row">

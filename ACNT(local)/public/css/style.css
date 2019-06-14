@@ -1,6 +1,7 @@
 /*1-Body*/
 body{
-    background-color: #83729C;
+    /*background-color: #83729C;*/
+    background-color: #351854;
    color: #636b6f;
    font-family: 'Nunito', sans-serif;
    font-weight: 200;
@@ -11,8 +12,7 @@ body{
 /*Register y login*/
 
 .session{
-    background-image: url(../img/copia.jpg);
-    background-size: cover;
+    margin-top: 15%;
 }
 #session_table{
     position: absolute;
@@ -123,9 +123,12 @@ list-style: none;
     display: none;
 }
 /*4- card*/
-.card-juegos{
-    max-width: 317px;
+
+.card-juegos img{
+    max-width: 286px;
     max-height: 392px;
+    min-height: 243px;
+    max-height: 243px;
 }
 /*5.- Juegos*/
 
@@ -133,8 +136,27 @@ list-style: none;
     width: 100%;
 }
 
-/*6.Tareas*/
-.tareas li{
-    color: white;
-    width:30%;
+/*6-Tablas*/
+.table{
+    margin-top:8%;
+    width: 94%;
+    margin-left: 3%;
+    
 }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  /*Botones*/
+  .boton{
+    margin-top: 7%;
+    margin-left: 2%;
+  }

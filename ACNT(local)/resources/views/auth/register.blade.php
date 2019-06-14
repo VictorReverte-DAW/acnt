@@ -40,93 +40,77 @@ use Illuminate\Support\Facades\DB;
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!--Plantilla-->
+    <link href="{{ asset('css/plantilla/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/slicknav.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/plantilla/responsive.css') }}" rel="stylesheet">
+    
 </head>
 
 <body>
 <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/welcome') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                     <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('Juegos/') }}">Juegos</a>
-                    </li>  
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('Torneos/') }}">Torneos</a>
-                    </li>
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
-                    </li>
+<div id="preloder">
+		<div class="loader"></div>
+	</div>
+<header class="header-section">
+		<div class="header-warp">
+			<div class="header-bar-warp d-flex">
+				<!-- site logo -->
+				<a href="/" class="site-logo">
+					<img src="./img/logo.png" alt="">
+				</a>
+                
+				<nav class="top-nav-area w-100">
+                @guest
+					<div class="user-panel">
+						<a href="{{ route('login') }}">Iniciar Sesion</a> /
                     @if (Route::has('register'))
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                    </li>
+                        <a href="{{ route('register') }}">Registrar</a>
+					</div>
+                    <ul class="main-menu primary-menu">
+                    <li><a href="{{ url('Juegos/') }}">Juegos</a></li>
+						<li><a href="{{ url('Torneos/') }}">Torneos</a></li>
                     @endif
                     @else
-                    @if(Auth::user()->id_rol != 6 || Auth::user()->dni=='77855599R')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('listaUsuarios/') }}">Registrar miembro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('reuniones/') }}">Reuniones</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Contabilidad
-                        </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('contabilidad/') }}">
-                                Cuotas
-                            </a>
-                            <a class="dropdown-item" href="#">
-                               Registro
-                            </a>
-                        </div>
-                    </li>
-                    @endif
-                  
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->nick }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('home/') }}">
-                                {{ __('Perfil') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+					<!-- Menu -->
+                      
+                        @if(Auth::user()->id_rol != 6 || Auth::user()->dni=='77855599R')
+						<li><a href="{{ url('listaUsuarios/')}}">Lista de miembro</a></li>
+						<li><a href="{{ url('reuniones/') }}">Reuniones</a>
+						<li><a href="{{ url('contabilidad/') }}">Contabilidad</a>
+							<ul class="sub-menu">
+								<li><a href="game-single.html">Contabilidad</a></li>
+								<li><a href="game-single.html">Movimientos</a></li>
+							</ul>
+						</li>
+                        <li><a href="games.html">{{ Auth::user()->nick }}</a>
+							<ul class="sub-menu">
+								<li><a href="{{ url('home/') }}">  {{ __('Perfil') }}</a></li>
+								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesion') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ __('Cerrar Sesion') }}
+                                    </a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                        </div>
-                    </li>
+							</ul>
+						</li>
+                        </ul>
+                        @endif
+                        
                     @endguest
-                </ul>
-                </div>
-            </div>
-        </nav>
-    <div class=" session" style="margin-top: 3%;">
+				</nav>
+            
+			</div>
+		</div>
+	</header>
+    <div class="session">
         <form method="POST" action="{{ route('register') }}">
             @csrf
-
             <div class="form-group row justify-content-center">
                 
                    <span class="col-md-1 col-form-label text-md-right input-group-text">{{ __('DNI') }}</span>
@@ -134,11 +118,6 @@ use Illuminate\Support\Facades\DB;
                 <div class="col-md-6">
                     <input id="dni" type="text" class="form-control{{ $errors->has('dni') ? ' is-invalid' : '' }}"
                         name="dni" value="{{ old('dni') }}" required autofocus>
-                        @if ($errors->has('dni'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('dni') }}</strong>
-                        </span>
-                    @endif
                 </div>
             </div>
             <div class="form-group row justify-content-center">
@@ -228,34 +207,34 @@ use Illuminate\Support\Facades\DB;
             <div class="form-group row justify-content-center">
                 <label for="Provincia" class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Provincia') }}</label>
                 <div class="col-md-6">
-                    <input id="provincia" type="text" class="form-control" name="provincia" required value="{{ old('provincia') }}">
+                    <input id="provincia" type="text" class="form-control" name="provincia" required>
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Localidad" class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Localidad') }}</label>
                 <div class="col-md-6">
-                    <input id="localidad" type="text" class="form-control" name="localidad" required value="{{ old('localidad') }}">
+                    <input id="localidad" type="text" class="form-control" name="localidad" required>
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Codigo Postal"
                     class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Codigo Postal') }}</label>
                 <div class="col-md-6">
-                    <input id="cp" type="number" class="form-control" name="cp" required value="{{ old('cp') }}">
+                    <input id="cp" type="number" class="form-control" name="cp" required>
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Telefono" class="col-md-1 col-form-label text-md-right input-group-text">{{ __('Telefono') }}</label>
                 <div class="col-md-6">
                     <input id="telefono" type="number" class="form-control" name="telefono" minlength=9 maxlength=9
-                        required value="{{ old('telefono') }}">
+                        required>
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="Fecha Nacimiento"
                     class="col-md-1 col-form-label text-md-right input-group-text">Fecha<br> Nacimiento</label>
                 <div class="col-md-6">
-                    <input id="fnac" type="date" class="form-control" name="fnac" required value="{{ old('fnac') }}">
+                    <input id="fnac" type="date" class="form-control" name="fnac" required>
                 </div>
             </div>
 
@@ -271,4 +250,16 @@ use Illuminate\Support\Facades\DB;
                 </div>
             </div>
             </div>
+
         </form>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/plantilla/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.sticky-sidebar.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/main.js') }}"></script>
+        </body>
+</html>

@@ -23,6 +23,7 @@ class CreateTorneosTable extends Migration
             $table->string('hora');
             $table->boolean('gratis');
             $table->double('precio')->nullable();
+            
             $table->unsignedBigInteger('id_juego');
             $table->foreign('id_juego')
                     ->references('id')->on('juegos')

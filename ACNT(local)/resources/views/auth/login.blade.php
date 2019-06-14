@@ -27,6 +27,17 @@ use Illuminate\Support\Facades\DB;
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
+    <!-- Plantilla--->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link href="{{ asset('css/plantilla/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/slicknav.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/plantilla/responsive.css') }}" rel="stylesheet">
+
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -34,86 +45,64 @@ use Illuminate\Support\Facades\DB;
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/welcome') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                     <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('Juegos/') }}">Juegos</a>
-                    </li>  
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('Torneos/') }}">Torneos</a>
-                    </li>
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
-                    </li>
+<div id="app">
+<div id="preloder">
+		<div class="loader"></div>
+	</div>
+<header class="header-section">
+		<div class="header-warp">
+			<div class="header-bar-warp d-flex">
+				<!-- site logo -->
+				<a href="/" class="site-logo">
+					<img src="./img/logo.png" alt="">
+				</a>
+                
+				<nav class="top-nav-area w-100">
+                @guest
+					<div class="user-panel">
+						<a href="{{ route('login') }}">Iniciar Sesion</a> /
                     @if (Route::has('register'))
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                    </li>
+                        <a href="{{ route('register') }}">Registrar</a>
+					</div>
+                    <ul class="main-menu primary-menu">
+                    <li><a href="{{ url('Juegos/') }}">Juegos</a></li>
+						<li><a href="{{ url('Torneos/') }}">Torneos</a></li>
                     @endif
                     @else
-                    @if(Auth::user()->id_rol != 6 || Auth::user()->dni=='77855599R')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('listaUsuarios/') }}">Registrar miembro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('reuniones/') }}">Reuniones</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Contabilidad
-                        </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('contabilidad/') }}">
-                                Cuotas
-                            </a>
-                            <a class="dropdown-item" href="#">
-                               Registro
-                            </a>
-                        </div>
-                    </li>
-                    @endif
-                  
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->nick }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('home/') }}">
-                                {{ __('Perfil') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+					<!-- Menu -->
+                    
+                    
+                      
+                        @if(Auth::user()->id_rol != 6 || Auth::user()->dni=='77855599R')
+						<li><a href="{{ url('listaUsuarios/')}}">Lista de miembro</a></li>
+						<li><a href="{{ url('reuniones/') }}">Reuniones</a>
+						<li><a href="{{ url('contabilidad/') }}">Contabilidad</a>
+							<ul class="sub-menu">
+								<li><a href="game-single.html">Contabilidad</a></li>
+								<li><a href="game-single.html">Movimientos</a></li>
+							</ul>
+						</li>
+                        <li><a href="games.html">{{ Auth::user()->nick }}</a>
+							<ul class="sub-menu">
+								<li><a href="{{ url('home/') }}">  {{ __('Perfil') }}</a></li>
+								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesion') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ __('Cerrar Sesion') }}
+                                    </a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                        </div>
-                    </li>
+							</ul>
+						</li>
+                        </ul>
+                        @endif
+                        
                     @endguest
-                </ul>
-                </div>
-            </div>
-        </nav>
+				</nav>
+            
+			</div>
+		</div>
+	</header>
 <div class="flex-center position-ref full-height session">
     <form method="POST" action="{{ route('login') }}">
                @csrf
@@ -151,34 +140,14 @@ use Illuminate\Support\Facades\DB;
               </div>
             </div>
             </form>
-                 <!--
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Recuerdame') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Iniciar Sesion') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('¿Has olvidado la contraseña?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-              
-                </div>
-            -->
+                    <!--Plantilla-->
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/plantilla/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.sticky-sidebar.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/main.js') }}"></script>
 </body>
 </html>

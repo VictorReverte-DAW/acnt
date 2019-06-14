@@ -39,7 +39,7 @@ class TorneoController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'ImagenTorneo' => 'required | mimes:jpeg,jpg,png | max:1024',
+            'ImagenTorneo' => 'required | mimes:png,jpg,jpeg | max:2048',
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -63,9 +63,8 @@ class TorneoController extends Controller
         $torneo->imagen = $nombre;
 
         $torneo->save();
-    
-        return redirect()->action('TorneoController@index');
     }
+    return redirect()->action('JuegoController@index');
 }
 
     /**

@@ -16,18 +16,16 @@ function mostrarRoles() {
   }
 function añadirPunto(){
     $(document).on('click','.Añadir',function(){
-        var $divs = $(".punto").toArray().length+1;
-        $('.puntos').append("<div class='punto'><h3 class='titulo'>Punto " + $divs +"<button class='Eliminar'>-</button></h3><div contenteditable='true'>Escribir punto de la reunión</div></div>")
+        var $divs = $(".punto").toArray().length;
+        
+        $('.puntos').append("<div class='punto text-white'><h3 class='titulo'><label contenteditable='true'>Punto " + $divs +"</label> <button class='Eliminar'>-</button></h3><div contenteditable='true'>Escribir punto de la reunión</div></div>")
     })
 }
 function borrarPunto(){
     $(document).on('click','.Eliminar',function(){
         $( this ).parent().parent().remove();
-        /*
-        $('.titulo').each(function(index){
-            alert(index);
-            $(this).eq(index).text('Punto ' + index+1)
-        })*/
+        var $divs = $(".punto").toArray().length;
+       
     })
     
 }
@@ -65,38 +63,7 @@ function actualizarFechaCuota(){
                     (mes<10 ? '0' : '') + mes + '-' +
                     fecha.getFullYear();
         if(((test.match(RegExPattern)))){
-            td.find( ".fechaSiguientePago" ).text(result)        }
+            td.find( ".fechaSiguientePago" ).text(result)
+        }
         })
-}
-
-function añadirTareas(){
-        var numTareas = $('#numTareas').val();
-        var numTotal =  $('.tareas li').toArray().length
-        var totalAñadido =numTareas-numTotal;
-            if(numTareas>numTotal){
-                for (let i = 0; i < totalAñadido; i++) {
-                    $('.tareas').append('<li contenteditable="true">Añadir tarea al torneo</li>')
-                }
-            }else if(numTareas<numTotal || numTotal>1){
-                for (let i = numTotal; i> numTareas; i--) {
-                    $('.tareas li:last-child').remove();
-                }
-            }
-        crearTareas()
-  
-}
-function crearTareas(){
-    $('.asignada').empty();
-    $('.tareas li').each(function(index){
-        $('.asignada').append("<option>"+$('.tareas li').eq(index).text()+"</option>")
-    });
-}
-function asignarTarea(){
-    $('tbody tr').click(function(){
-        var tr=$(this).index();
-        td = $('tbody tr').eq(tr);
-        var nombre = td.find('.nombre').text()
-        td.find($('textarea')).val($('.asignada'+nombre).val())
-    })
-    
 }

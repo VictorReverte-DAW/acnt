@@ -38,7 +38,9 @@ class JuegoController extends Controller
     {    
         
         $rules = array(
-            'imagen' => 'required | mimes:jpeg,jpg,png | max:1024',
+            'nombre' =>'required',
+            'imagen' => 'required | mimes:png,jpg,jpeg| max:2048',
+            'descripcion'=>'required',
         );
 
         $validator = Validator::make($request->all(), $rules);
@@ -48,15 +50,15 @@ class JuegoController extends Controller
                 $nombre = time();
                 $file->move(public_path()."/img/imagenesJuegos/",$nombre);
             }
-    
+        if($request->input('descripcion')!==null || $request->input('descripcion')!==""){
             $juego = new Juego();
             $juego->nombre = $request->input('nombre');
             $juego->plataforma = $request->input('plataforma');
-            $juego->plataforma = $request->input('plataforma');
             $juego->imagen = $nombre;
             $juego->descripcion = $request->input('descripcion');
-    
             $juego->save();
+        }
+            
         }
            
         

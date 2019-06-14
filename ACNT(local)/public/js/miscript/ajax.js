@@ -5,21 +5,21 @@ function editar(){
         var data = $tr.children('td').map(function(){
             return $(this).text();
         }).get();
-        $('#id').val(data[1]);
-        $('#dni').val(data[2]);
-        $('#nick').val(data[3]);
-        $('#name').val(data[4]);
-        $('#apellido').val(data[5]);
-        $('#email').val(data[6]);
-        $('#password').val(data[7]);
-        $('#provincia').val(data[8]);
-        $('#localidad').val(data[9]);
-        $('#cp').val(data[10]);
-        $('#telefono').val(data[11]);
-        $('#fnac').val(data[12]);
-        $('#esMiembro').val(data[13]);
+        $('#id').val(data[2]);
+        $('#dni').val(data[3]);
+        $('#nick').val(data[4]);
+        $('#name').val(data[5]);
+        $('#apellido').val(data[6]);
+        $('#email').val(data[7]);
+        $('#password').val(data[8]);
+        $('#provincia').val(data[9]);
+        $('#localidad').val(data[10]);
+        $('#cp').val(data[11]);
+        $('#telefono').val(data[12]);
+        $('#fnac').val(data[13]);
+        $('#esMiembro').val(data[14]);
    
-        if(data[13]==="1"){
+        if(data[14]==="1"){
             $('#esMiembro_check').prop('checked', true);
             $('#esMiembro').val(1)
         }else{
@@ -78,12 +78,14 @@ function AsistirReunion(id){
 }
 
 function crearTorneo(){
+
     if ($('#gratis_check').is(':checked')) {
         $('.precio').css("display", "none");
         $('#gratis').val(1)
     } else {
         $('.precio').css("display", "flex");
         $('#gratis').val(0)
+        $('.Cantprecio').val(1)
     }
     $('#gratis_check').on('click', function() {
         if ($(this).is(':checked')) {
@@ -91,6 +93,7 @@ function crearTorneo(){
             $('#gratis').val(1)
         } else {
             $('.precio').css("display", "flex");
+            $('#gratis').val(0)
             $('#gratis').val(0)
         }
     })
@@ -327,36 +330,6 @@ function actualizarReunion(){
     })
 }
 
-function pagarCuota(){
-    /*
-    $('tbody tr').click(function(){
-        var tr=$(this).index();
-        var td = $('tbody tr').eq(tr);
-        var fecha =td.find('.fecha').text()
-        var total = parseInt(td.find('.mes input').val());
-        var id_usuario = parseInt(td.find('.id').text());
-        alert(fecha)
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "post",
-            url: "/pagarCuota/"+id_usuario,
-            data:{total:total,fecha:fecha},
-            success: function(response){
-                //console.log(response);
-                console.log(data);
-                alert("pago efectuado")
-            },
-            error: function(error){
-                console.log(error);
-                alert("no se ha abonado la cuota")
-            }
-        })
-        })
-    */
-   
-}
 function pago(id){
     $(document).one('click','tbody tr' ,function(){
         var tr=$(this).index();

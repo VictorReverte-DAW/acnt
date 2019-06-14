@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\DB;
 
     <title>{{ config('app.name', 'ACNTÁGUILAS') }}</title>
 
-    <!-- Scripts -->
+     <!-- Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+      <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://code.jquery.com/jquery-3.4.0.min.js"integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -22,8 +24,6 @@ use Illuminate\Support\Facades\DB;
     <script src="{{asset('js/miscript/ajax.js')}}" ></script>
     <script src="{{asset('js/miscript/script.js')}}" ></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-
     <script>
     $(document).ready(function() {
         obtenerFechaCuota();
@@ -34,19 +34,16 @@ use Illuminate\Support\Facades\DB;
         actualizarJuego();
         actualizarTorneo();
         actualizarReunion();
-        crearTareas();
-        asignarTarea()
+
     });
-   $(document).click(function(){
-    añadirTareas()
-   })
     function generarPDF(){
     var doc = new jsPDF()
       doc.fromHTML($('#acta').get(0),20,20,{
           'width':155},
+     
           );
       
-      doc.save('acta de la reunion.pdf')
+      doc.save('Acta de la reunion.pdf')
   }
     </script>
 
@@ -59,89 +56,71 @@ use Illuminate\Support\Facades\DB;
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+     <!-- Plantilla--->    
+    <link href="{{ asset('css/plantilla/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/slicknav.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/plantilla/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/plantilla/responsive.css') }}" rel="stylesheet">
+    
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/welcome') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Right Side Of Navbar -->
-                     <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesion') }}</a>
-                    </li>
+<header class="header-section">
+		<div class="header-warp">
+			<div class="header-bar-warp d-flex">
+				<!-- site logo -->
+				<a href="/" class="site-logo">
+					<img src="./img/logo.png" alt="">
+				</a>
+                
+				<nav class="top-nav-area w-100">
+                @guest
+					<div class="user-panel">
+						<a href="{{ route('login') }}">Iniciar Sesion</a> /
                     @if (Route::has('register'))
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                    </li>
+						<a href="{{ route('register') }}">Registrar</a>
+						
+					</div>
+					<ul class="main-menu primary-menu">
+                    <li><a href="{{ url('Juegos/') }}">Juegos</a></li>
+						<li><a href="{{ url('Torneos/') }}">Torneos</a></li>
                     @endif
-                    @else
-                    @if(Auth::user()->id_rol != 6 || Auth::user()->dni=='77855599R')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('listaUsuarios/') }}">Registrar miembro</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('reuniones/') }}">Reuniones</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Contabilidad
-                        </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('contabilidad/') }}">
-                                Cuotas
-                            </a>
-                            <a class="dropdown-item" href="#">
-                               Registro
-                            </a>
-                        </div>
-                    </li>
-                    @endif
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('Juegos/') }}">Juegos</a>
-                    </li>  
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('Torneos/') }}">Torneos</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->nick }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('home/') }}">
-                                {{ __('Perfil') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+					@else
+					<ul class="main-menu primary-menu">
+                    <li><a href="{{ url('Juegos/') }}">Juegos</a></li>
+						<li><a href="{{ url('Torneos/') }}">Torneos</a></li>
+					<!-- Menu -->
+					@if(Auth::user()->id_rol != 6 || Auth::user()->dni=='77855599R')
+					
+						<li><a href="{{ url('listaUsuarios/')}}">Lista de miembro</a></li>
+						<li><a href="{{ url('reuniones/') }}">Reuniones</a>
+						<li><a href="{{ url('contabilidad/') }}">Contabilidad</a></li>
+						@endif
+                        <li><a href="games.html">{{ Auth::user()->nick }}</a>
+							<ul class="sub-menu">
+								<li><a href="{{ url('home/') }}">  {{ __('Perfil') }}</a></li>
+								<li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesion') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ __('Cerrar Sesion') }}
+                                    </a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-                        </div>
-                    </li>
+							</ul>
+						</li>
+                        </ul>
+                        
+                        
                     @endguest
-                </ul>
-                </div>
-            </div>
-        </nav>
-
+				</nav>
+            
+			</div>
+		</div>
+	</header>
         <main class="py-4">
             @yield('content')
         </main>

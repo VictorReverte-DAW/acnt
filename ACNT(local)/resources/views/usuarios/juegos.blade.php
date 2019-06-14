@@ -21,12 +21,15 @@ function obtenerFecha(){
 @extends('layouts.app')
 
 @section('content')
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#juego">
+<div class="row">
+<button type="button" class="btn btn-primary boton" data-toggle="modal" data-target="#juego">
 Añadir juego
 </button>
-<div class="row">
-@foreach($juegos as $juego)
-    <div class="card card-juegos" style="width: 18rem;">
+</div>
+<div class="row justify-content-md-center">
+@forelse($juegos as $juego)
+<div class="col-lg-4 col-md-6 col-sm-1">
+    <div class="card card-juegos" style="width: 18rem;margin-left:1%;margin-top:5%">
         <img src="img/imagenesJuegos/{{$juego->imagen}}" alt="{{$juego->nombre}}" class="juego">
     <ul id="infoJuego" class="list-group list-group-flush">
     <div class="id" style="display:none">{{$juego->id}}</div>
@@ -42,7 +45,12 @@ Añadir juego
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#torneo">Crear torneo</button>
     </ul>
     </div>
-@endforeach
+    </div>
+    
+    @empty
+    <h5 class="text-white">Actualmente no hay juegos en nuestra lista</h5>
+@endforelse
+
 </div>
 <div class="modal fade" id="juego" tabindex="-1" role="dialog" aria-labelledby="juego" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -88,7 +96,7 @@ Añadir juego
                     <label for="Descripcion"
                             class="col-md-4 col-form-label text-md-right">Descripcion</label>
                         <div class="col-md-6">
-                            <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+                            <textarea name="descripcion" id="descripcion" cols="30" rows="10" required></textarea>
                         </div>
                     </div>
                     <div class="form-group row mb-0">
@@ -110,7 +118,7 @@ Añadir juego
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="torneoModal">Crear un torneo de {{$juego->nombre}}</h5>
+                <h5 class="modal-title" id="torneoModal">Crear un torneo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -126,33 +134,33 @@ Añadir juego
                     <label for="Nombre"
                             class="col-md-4 col-form-label text-md-right">Nombre del torneo</label>
                         <div class="col-md-6">
-                            <input type="text" name="nombre" id="nombre" required value="{{$juego->nombre}}">
+                            <input type="text" name="nombre" id="nombre" required>
                         </div>
                     </div>
                     <div class="form-group row">
                     <label for="Max_jugadores"
                             class="col-md-4 col-form-label text-md-right">Maximo de jugadores</label>
                         <div class="col-md-6">
-                            <input type="number" name="max_jugadores" id="max_jugadores" min="2">
+                            <input type="number" name="max_jugadores" id="max_jugadores" min="2" required>
                         </div>
                     </div> 
                     <div class="form-group row">
                     <label for="imagenTorneo"
                             class="col-md-4 col-form-label text-md-right">ImagenTorneo</label>
                         <div class="col-md-6">
-                            <input type="file" name="ImagenTorneo" id="ImagenTorneo" accept="image/*">
+                            <input type="file" name="ImagenTorneo" id="ImagenTorneo" accept="image/*" required>
                         </div>
                     </div> 
                     <div class="form-group row">
                     <label for=""class="col-md-4 col-form-label text-md-right">Fecha del torneo</label>
                         <div class="col-md-6">
-                            <input type="date" name="fecha" id="fecha" min="{{obtenerFecha()}}">
+                            <input type="date" name="fecha" id="fecha" min="{{obtenerFecha()}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                     <label for=""class="col-md-4 col-form-label text-md-right">Hora del torneo</label>
                         <div class="col-md-6">
-                            <input type="time" name="hora" id="hora">
+                            <input type="time" name="hora" id="hora" required>
                         </div>
                     </div> 
                     </div>
@@ -166,7 +174,7 @@ Añadir juego
                     <label for="Precio"
                             class="col-md-4 col-form-label text-md-right">Precio de la inscripcion</label>
                         <div class="col-md-6">
-                            <input type="number" name="precio" id="precio" min="1">
+                            <input type="number" name="precio" class="Cantprecio" min="1">
                         </div>
                     </div> 
                     <div class="form-group row mb-0">
@@ -184,4 +192,14 @@ Añadir juego
 @endif
 @extends('layouts.modal.modalEditarJuego')
 </div>
+        <!--Plantilla-->
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+    <script src="{{ asset('js/plantilla/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.sticky-sidebar.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/main.js') }}"></script>
 @endsection

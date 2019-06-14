@@ -15,7 +15,6 @@ class CreateCuotasTable extends Migration
     {
         Schema::create('cuotas', function (Blueprint $table) {
             $table->date('fecha_pago');
-            $table->date('mes_pagados');
             $table->integer('total');
             $table->unsignedBigInteger('id_Usuario')->nullable();
             $table->foreign('id_Usuario')

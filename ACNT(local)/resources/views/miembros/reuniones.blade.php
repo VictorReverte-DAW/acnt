@@ -25,7 +25,7 @@ function obtenerFecha(){
 @extends('layouts.app')
 @section('content')
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearReunion">
+<button type="button" class="btn btn-primary boton" data-toggle="modal" data-target="#CrearReunion">
   Crear Reunion
 </button>
 
@@ -79,8 +79,9 @@ function obtenerFecha(){
     </div>
   </div>
 </div>
+<a href="chat.blade.php">Chat</a>
 @if(!$reuniones->isEmpty())
-<table class="table table-hover">
+<table class="table table-dark table-hover table-sm" style="overflow-x:auto;    margin-top: 4%;">
     {{csrf_field()}}
     {{method_field("PUT")}}
     <thead>
@@ -135,9 +136,19 @@ function obtenerFecha(){
     </tbody>
 </table>
 @else
-<h4>No hay Reuniones Don´t Worry Be Happy.</h4>
+<h4 class="text-white">No hay Reuniones Don´t Worry Be Happy.</h4>
 @endif
 
 
 @extends('layouts.modal.modalEditarReunion')
+        <!--Plantilla-->
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+    <script src="{{ asset('js/plantilla/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.sticky-sidebar.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/main.js') }}"></script>
 @endsection

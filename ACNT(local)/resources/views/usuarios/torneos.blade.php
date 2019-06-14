@@ -11,12 +11,14 @@ $id_torneo = DB::select('Select id from torneos');
 ?>
 @extends('layouts.app')
 @section('content')
-<a href="{{url('Juegos/')}}" class="btn btn-primary">
+<a href="{{url('Juegos/')}}" class="btn btn-primary boton">
     Crear Torneo
 </a>
 <div class="row">
 {{ csrf_field() }}
+<div class="row justify-content-md-center">
 @foreach($torneos as $key=>$torneo)
+<div class="col-lg-4 col-md-6 col-sm-1">
 <?php
     $participante = DB::table('participantes')->where('id_Usuario',"=",Auth::user()->id)->first();
     $id_participantes = DB::table('participantes')
@@ -39,9 +41,8 @@ $id_torneo = DB::select('Select id from torneos');
         $id= $id_tabla->id;
     }
     ?>
-<div class="card card-juegos" style="width: 18rem;">
+<div class="card card-juegos" style="width: 18rem;margin-left:1%;margin-top:5%">
         <img src="img/imagenesTorneos/{{$torneo->imagen}}" alt="{{$torneo->nombre}}" class="juego">
-  
     <ul class="list-group list-group-flush torneo{{$torneo->id}}">
     <div class="id" style="display:none">{{$torneo->id}}</div>
     <li  class="list-group-item">
@@ -71,21 +72,14 @@ $id_torneo = DB::select('Select id from torneos');
         <p><button class="btn btn-primary EnviarComentario" onclick=escribirComentario({{$torneo->id}})>Enviar</button></p>
     </li>
     @endif
-    @if(Auth::user()->esMiembro===1)
     <li class="list-group-item">
-    <form action="tareas" method="post">
-    @csrf
-        <input type="hidden" name="id_torneo" value="{{$torneo->id}}">
-       <button type="submit"  class="btn btn-primary"><a href="{{url('/tareas')}}"></a>Tareas</button> 
-    </form>
-  
         <a href="{{url('borrarTorneo/')}}/{{$torneo->id}}" class="btn btn-primary">Borrar</a>
         <a href='#' data-toggle="modal" data-target="#EditTorneo" class="btn btn-primary EditTorneo">Editar</a>
         @if($torneo->estado=="activo")
         <a href="{{url('terminarTorneo/')}}/{{$torneo->id}}" class="btn btn-primary">Terminar</a>
-    @endif
+        @endif
     </li>
-   @endif
+   
     @if($totalParticipantes[$key]->total>=$torneo->max_jugadores)
     <label>Numero maximo ocupado</label>
     @else
@@ -104,7 +98,20 @@ $id_torneo = DB::select('Select id from torneos');
 
     </div>
     </ul>
+</div>
 @endforeach
+</div>
 @extends('layouts.modal.modalEditarTorneo')
 </div>
+
+        <!--Plantilla-->
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+    <script src="{{ asset('js/plantilla/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.sticky-sidebar.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/main.js') }}"></script>
 @endsection

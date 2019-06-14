@@ -5,10 +5,11 @@ $users = DB::table('users')->get();
 @extends('layouts.app')
 
 @section('content')
-
-<table class="table table-hover">
+<div style="overflow-x:auto;">
+<table class="table table-dark table-hover table-sm" style="overflow-x:auto;">
     <thead>
         <tr>
+            <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col" class="oculto"></th>
             <th scope="col" class="oculto">dni</th>
@@ -30,6 +31,7 @@ $users = DB::table('users')->get();
         @forelse($users as $user)
         <tr>
             <td><a href='#' data-toggle="modal" data-target="#edit" class="editarUsu"><i class="far fa-edit"></i></a></td>
+            <td><a href='/borrarUsuario/{{$user->id}}'><i class="fas fa-trash-alt"></i></a></td>
             <td class="oculto">{{$user->id}}</td>
             <td class="oculto">{{$user->dni}}</td>
             <td>{{$user->nick}}</td>
@@ -76,6 +78,7 @@ $users = DB::table('users')->get();
         @endforelse
     </tbody>
 </table>
+</div>
 <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -166,7 +169,7 @@ $users = DB::table('users')->get();
                         </div>
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group row oculto">
                         <label for="password"
                             class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
@@ -296,4 +299,18 @@ $users = DB::table('users')->get();
     </div>
 </div>
 </div>
+        <!--Plantilla-->
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+    <script src="{{ asset('js/plantilla/jquery.slicknav.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.sticky-sidebar.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('js/plantilla/main.js') }}"></script>
+      <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+
 @endsection

@@ -23,21 +23,15 @@ Route::get('/acta', function () {
 Route::get('/contabilidad', function () {
     return view('miembros.contabilidad');
 });
-
-
-/*
-Route::get('/tareas/{id}', function () {
-    return view('miembros.tarea')->with('id_torneo','id_torneo');
-});
-*/
 Auth::routes();
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
-
+/*Usuarios*/
 Route::get('/listaUsuarios', 'UserController@index')->name('listaUsuarios');
+Route::get('/borrarUsuario/{id}', 'UserController@destroy')->name('borrarUsuario');
 //Reuniones
 Route::get('/reuniones', 'reunionesController@index')->name('reuniones');
 Route::get('/AsistirReunion/{id}', 'reunionesController@asistirReunion')->name('AsistirReunion');
@@ -66,12 +60,8 @@ Route::post('añadirComentario','ParticipantesController@store')->name('añadirC
 /*Cuotas*/
 Route::post('crearCuota/', 'CuotaController@store')->name('crearCuota');
 
-/*Supervisores*/
-
-Route::post('tareas','SupervisorController@index')->name('tareas');
-Route::post('repartirTareas','SupervisorController@store')->name('repartirTareas');
-
 /*Emails*/
 Route::resource('mail','MailController'); 
 
 Route::put("/actualizar/{id}","ajaxCrudController@update");
+
